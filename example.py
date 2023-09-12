@@ -63,8 +63,8 @@ ivis.fit(X_train)
 
 embeddings_original = ivis.transform(X_test)
 # embeddings_2 = ivis.transform(X_test_blur_2)
-# embeddings_5 = ivis.transform(X_test_blur_5)
-embeddings_15 = ivis.transform(X_test_blur_15)
+embeddings_5 = ivis.transform(X_test_blur_5)
+# embeddings_15 = ivis.transform(X_test_blur_15)
 
 # p_2 = [None, None]
 # p_5 = [None, None]
@@ -75,8 +75,9 @@ embeddings_15 = ivis.transform(X_test_blur_15)
     #                      alternative='two-sided', mode='asymp')
     # ks, p_5[i] = ks_2samp(embeddings_original[:, i], embeddings_5[:, i],
     #                      alternative='two-sided', mode='asymp')
-ks, p_15 = ks_2samp(embeddings_original[:, 1], embeddings_15[:, 1],
+ks, p_5 = ks_2samp(embeddings_original[:, 1], embeddings_5[:, 1],
                          alternative='two-sided', mode='asymp')
 
 
+print(p_5)
 print(f"\n\n\nScore: {ks}\n\n\n")
