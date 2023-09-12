@@ -23,15 +23,15 @@ from ivis import Ivis
 
 
 (X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar10.load_data()
-X_train = X_train[:1000, :, :, :].astype('float32') / 255
+X_train = X_train[:10000, :, :, :].astype('float32') / 255
 X_test = X_test[:2000, :, :, :].astype('float32') / 255
-y_train = y_train[:1000, :].astype('int64').reshape(-1,)
+y_train = y_train[:10000, :].astype('int64').reshape(-1,)
 y_test = y_test[:2000, :].astype('int64').reshape(-1,)
 
 
-X_test_blur_2 = np.load('sample_data/X_test_blur_2.npy') # np.array([motion_blur(x, size=2) for x in X_test])
+# X_test_blur_2 = np.load('sample_data/X_test_blur_2.npy') # np.array([motion_blur(x, size=2) for x in X_test])
 X_test_blur_5 = np.load('sample_data/X_test_blur_5.npy') # np.array([motion_blur(x, size=5) for x in X_test])
-X_test_blur_15 = np.load('sample_data/X_test_blur_15.npy') #np.array([motion_blur(x, size=15) for x in X_test])
+# X_test_blur_15 = np.load('sample_data/X_test_blur_15.npy') #np.array([motion_blur(x, size=15) for x in X_test])
 
 
 ohe = OneHotEncoder()
@@ -78,6 +78,4 @@ embeddings_5 = ivis.transform(X_test_blur_5)
 ks, p_5 = ks_2samp(embeddings_original[:, 1], embeddings_5[:, 1],
                          alternative='two-sided', mode='asymp')
 
-
-print(p_5)
 print(f"\n\n\nScore: {ks}\n\n\n")
