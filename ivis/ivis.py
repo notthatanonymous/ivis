@@ -16,6 +16,7 @@ from sklearn.exceptions import NotFittedError
 from tensorflow import keras
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.models import load_model, Model
+from tensorflow.keras.optimizers import Adam
 
 from .data.generators import generator_from_neighbour_matrix, KerasSequence
 from .data.neighbour_retrieval import AnnoyKnnMatrix
@@ -271,10 +272,11 @@ class Ivis(BaseEstimator, TransformerMixin):
         triplet_loss_func = triplet_loss(distance=self.distance)
 
         if self.model_ is None:
-            try:
-                optimizer_fn = tf.keras.optimizers.legacy.Adam()
-            except ImportError:
-                optimizer_fn = tf.keras.optimizers.Adam()
+            optimizer_fn = Adam()
+            # try:
+            #     optimizer_fn = tf.keras.optimizers.legacy.Adam()
+            # except ImportError:
+            #     optimizer_fn = tf.keras.optimizers.Adam()
 
             if isinstance(self.model, str):
                 input_size = (X.shape[-1],)
