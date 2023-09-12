@@ -20,9 +20,9 @@ from ivis import Ivis
 
 
 (X_train, y_train), (X_test, y_test) = tf.keras.datasets.cifar10.load_data()
-X_train = X_train.astype('float32') / 255
+X_train = X_train[:10000, :, :, :].astype('float32') / 255
 X_test = X_test[:2000, :, :, :].astype('float32') / 255
-y_train = y_train.astype('int64').reshape(-1,)
+y_train = y_train[:10000, :].astype('int64').reshape(-1,)
 y_test = y_test[:2000, :].astype('int64').reshape(-1,)
 
 
